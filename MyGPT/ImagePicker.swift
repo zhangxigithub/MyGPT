@@ -34,6 +34,7 @@ struct ImagePicker: View {
 }
 
 extension PhotosPickerItem {
+    @MainActor
     func image() async throws -> PlatformImage? {
         guard let data = try await loadTransferable(type: Data.self) else { return nil }
         return PlatformImage(data: data)
