@@ -43,7 +43,8 @@ struct InputTextField: View {
                 
                 if !selectedImages.isEmpty {
                     ImagesView(images: selectedImages)
-                    .padding(.trailing, 90)
+                        .disabled(true)
+                        .padding(.trailing, 90)
                 }
             }
             .frame(maxWidth: .infinity)

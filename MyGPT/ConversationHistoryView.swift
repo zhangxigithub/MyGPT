@@ -45,5 +45,17 @@ struct ConversationHistoryView: View {
                 }
             }
         }
+        .navigationTitle("Conversation History")
+        .toolbar {
+            ToolbarItem {
+                Button("", systemImage: "trash", role: .destructive) {
+                    conversations.dropFirst().forEach {
+                        modelContext.delete($0)
+                    }
+                    try? modelContext.save()
+                }
+            }
+        }
     }
 }
+

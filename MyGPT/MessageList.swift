@@ -107,19 +107,42 @@ struct ResponseMessageBubble: View {
 
 struct ImagesView: View {
     var images: [PlatformImage]
+    @State private var showFullScreenCover = false
     
     var body: some View {
         if !images.isEmpty {
             HStack(spacing: 8) {
-                ForEach(images, id: \.self) {
-                    $0.imageView
+                ForEach(images, id: \.self) { image in
+                    image.imageView
                         .resizable()
                         .scaledToFill()
                         .frame(width: 50, height: 50)
                         .cornerRadius(10)
                 }
             }
+            .onTapGesture {
+                showFullScreenCover.toggle()
+            }
+
             .frame(height: 50)
+            .sheet(isPresented: $showFullScreenCover) {
+                TabView {
+                    ForEach(0..<images.count, id: \.self) { i in
+                        VStack {
+                            images[i].imageView
+                                .resizable()
+                                .scaledToFit()
+                            Button("Save") {
+                                images[i].save()
+                            }
+                            Button("Dismiss") {
+                                showFullScreenCover = false
+                            }
+                        }
+                    }
+                }
+                .usePageStyleIfAvailable()
+            }
         } else {
             EmptyView()
         }
@@ -136,5 +159,15 @@ struct MarkdownView: View {
         } else {
             Text(markdown)
         }
+    }
+}
+
+extension View {
+    func usePageStyleIfAvailable() -> some View {
+#if os(iOS)
+        self.tabViewStyle(.page)
+#else
+        self
+#endif
     }
 }
