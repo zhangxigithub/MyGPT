@@ -17,14 +17,14 @@ struct ConversationView: View {
     var body: some View {
         NavigationStack {
             MessageList(conversation: conversation)
-            .scrollDismissesKeyboard(.interactively)
-            .navigationTitle(settings.selectedModel)
-            .dropDestination(for: Data.self) { items, location in
-                guard let item = items.first else { return false }
-                guard let image = PlatformImage(data: item) else { return false }
-                selectedImages.append(image)
-                return true
-            }
+                .interactivelyDismissIfAvailable()
+                .navigationTitle(settings.selectedModel)
+                .dropDestination(for: Data.self) { items, location in
+                    guard let item = items.first else { return false }
+                    guard let image = PlatformImage(data: item) else { return false }
+                    selectedImages.append(image)
+                    return true
+                }
             .safeAreaInset(edge: .bottom) {
                 InputTextField(selectedImages: $selectedImages, conversation: conversation)
                 .padding()
@@ -59,3 +59,14 @@ struct ConversationView: View {
 }
 
 
+
+extension View {
+    @ViewBuilder
+    func interactivelyDismissIfAvailable() -> some View {
+#if os(iOS)
+        self.scrollDismissesKeyboard(.interactively)
+#else
+        self
+#endif
+    }
+}

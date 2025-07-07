@@ -10,8 +10,7 @@ import SwiftData
 import Combine
 #if os(macOS)
 import AppKit
-#endif
-#if os(iOS)
+#else
 import UIKit
 #endif
 
