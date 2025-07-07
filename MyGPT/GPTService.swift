@@ -14,6 +14,7 @@ class GPTService {
         self.settings = settings
     }
     
+    @MainActor
     func chat(with conversation: Conversation, message: String, search: Bool, inputImages: [PlatformImage] = []) async throws {
         
         let previousResponseId = conversation.messages.last?.responseId
@@ -48,7 +49,7 @@ class GPTService {
         }
     }
     
-    
+    @MainActor
     func generateImage(with conversation: Conversation, message: String, inputImages: [PlatformImage] = []) async throws {
         do {
             let api = GPTAPI(settings: settings)

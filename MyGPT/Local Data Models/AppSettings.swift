@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 import Combine
 
+@MainActor
 class AppSettings: ObservableObject {
     @Published var models: [String] = []
     @AppStorage("AppSettings.selectedModel") var selectedModel: String = ""
@@ -23,12 +24,19 @@ class AppSettings: ObservableObject {
     @AppStorage("chatGPT.image.background") var background: ImageBackground = .auto
     @AppStorage("chatGPT.image.number") var number: Int = 1
     
+    
+    let keychainManager = KeychainAPIKeyManager()
     init() {
-        apiKeys = KeychainAPIKeyManager.shared.getAllAPIKeys()
+        apiKeys = keychainManager.getAllAPIKeys()
 
         if apiKey != "" {
+            // Bypass swift6 issue
+            let safeApiKey = apiKey
             Task {
-                try await models = GPTAPI.models(apiKey: apiKey)
+                let fetchedModels = try await GPTAPI.models(apiKey: safeApiKey)
+                await MainActor.run {
+                    self.models = fetchedModels
+                }
             }
         }
     }
@@ -42,30 +50,30 @@ extension AppSettings {
     }
 
     func deleteAPIKey(key: StoredAPIKey) {
-        KeychainAPIKeyManager.shared.deleteAPIKey(id: key.id)
-        self.apiKeys = KeychainAPIKeyManager.shared.getAllAPIKeys()
+        keychainManager.deleteAPIKey(id: key.id)
+        self.apiKeys = keychainManager.getAllAPIKeys()
     }
     
     func addAPIKey(name: String, key: String) {
-        KeychainAPIKeyManager.shared.getAllAPIKeys().forEach {
-            KeychainAPIKeyManager.shared.setAPIKeyEnabled(id: $0.id, isEnabled: false)
+        keychainManager.getAllAPIKeys().forEach {
+            keychainManager.setAPIKeyEnabled(id: $0.id, isEnabled: false)
         }
         let key = StoredAPIKey(name: name, key: key, isEnabled: true)
-        KeychainAPIKeyManager.shared.saveAPIKey(key)
+        keychainManager.saveAPIKey(key)
         
-        self.apiKeys = KeychainAPIKeyManager.shared.getAllAPIKeys()
+        self.apiKeys = keychainManager.getAllAPIKeys()
     }
     
     func enableAPIKey(key: StoredAPIKey) {
-        let keys = KeychainAPIKeyManager.shared.getAllAPIKeys()
+        let keys = keychainManager.getAllAPIKeys()
         keys.forEach {
             if $0.id == key.id {
-                KeychainAPIKeyManager.shared.setAPIKeyEnabled(id: key.id, isEnabled: true)
+                keychainManager.setAPIKeyEnabled(id: key.id, isEnabled: true)
             } else {
-                KeychainAPIKeyManager.shared.setAPIKeyEnabled(id: $0.id, isEnabled: false)
+                keychainManager.setAPIKeyEnabled(id: $0.id, isEnabled: false)
             }
         }
-        self.apiKeys = KeychainAPIKeyManager.shared.getAllAPIKeys()
+        self.apiKeys = keychainManager.getAllAPIKeys()
     }
 }
 

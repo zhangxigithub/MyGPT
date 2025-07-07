@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct StoredAPIKey: Identifiable, @MainActor Codable, Hashable {
+struct StoredAPIKey: Identifiable, Codable, Hashable {
     let id: String                  // UUID used as key
     var name: String               // User-defined name (can change)
     var key: String              // API Key
@@ -20,9 +20,7 @@ struct StoredAPIKey: Identifiable, @MainActor Codable, Hashable {
     }
 }
 
-final class KeychainAPIKeyManager {
-    static let shared = KeychainAPIKeyManager()
-    private init() {}
+class KeychainAPIKeyManager {
 
     private let service = "sidzhang.MyGPT"
     private let classType = kSecClassGenericPassword

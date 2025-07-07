@@ -10,18 +10,12 @@ import SwiftUI
 
 private let baseURL = "https://api.openai.com/v1/"
 
+@MainActor
 class GPTAPI {
-    var developer: String = ""
-    
     var settings: AppSettings
 
     init(settings: AppSettings) {
-        self.developer = "developer"
         self.settings = settings
-    }
-
-    func update(developer: String,) async {
-        self.developer = developer
     }
 
     func urlRequest(path: String, httpMethod: String = "POST") -> URLRequest {

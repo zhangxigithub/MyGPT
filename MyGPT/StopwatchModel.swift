@@ -7,7 +7,6 @@
 import SwiftUI
 import Combine
 
-@MainActor
 class StopwatchModel: ObservableObject {
     // Published property to track elapsed time
     @Published var elapsedTime: TimeInterval = 0

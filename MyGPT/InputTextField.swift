@@ -137,7 +137,9 @@ extension View {
     func glassEffectIfAvailable() -> some View {
 #if os(iOS)
         if #available(iOS 26.0, *) {
-            self.glassEffect()
+            // Waiting for Xcode 26
+            // self.glassEffect()
+            self
         } else {
             self
         }

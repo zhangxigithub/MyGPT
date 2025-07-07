@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatResponse: @MainActor Decodable {
+struct ChatResponse: Decodable {
 
     let id: String
     let error: ChatError?
@@ -50,7 +50,7 @@ struct ResponseContent: Decodable {
     let text: String?
 }
 
-struct ChatRequest: @MainActor Codable {
+struct ChatRequest: Codable {
     let model: String
     let input: [ChatMessage]
     let previous_response_id: String?
@@ -68,11 +68,11 @@ struct ChatRequest: @MainActor Codable {
 
 }
 
-struct ChatTool: @MainActor Codable {
+struct ChatTool: Codable {
     let type: String
 }
 
-struct ChatMessage: @MainActor Codable {
+struct ChatMessage: Codable {
     let role: String // "developer", "user", or "assistant"
     let content: [ChatMessageContent]
 
@@ -92,7 +92,7 @@ struct ChatMessage: @MainActor Codable {
     }
 }
 
-struct ChatMessageContent: @MainActor Codable {
+struct ChatMessageContent: Codable {
     let type: String
     var text: String?
     var image_url: String?
@@ -111,7 +111,7 @@ struct ChatMessageContent: @MainActor Codable {
     }
 }
 
-struct ModelResponse: @MainActor Decodable {
+struct ModelResponse: Decodable {
     let data: [ModelResponseItem]
     let error: ChatError?
 }
@@ -126,7 +126,7 @@ struct ChatError: Decodable {
 }
 
 
-struct ErrorResponse: @MainActor Decodable {
+struct ErrorResponse: Decodable {
     let error: ChatError
     
     var apiError: GPTAPIError {

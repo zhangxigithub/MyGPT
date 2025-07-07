@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct ImageResponse: @MainActor Decodable {
+struct ImageResponse: Decodable {
     let data: [ImageResponseData]
     
     var images: [PlatformImage] {
