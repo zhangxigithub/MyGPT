@@ -10,23 +10,42 @@ import SwiftData
 
 @main
 struct MyGPTApp: App {
-    var sharedModelContainer: ModelContainer = {
+    
+    let settings = AppSettings()
+    let newConversation: Conversation
+    let sharedModelContainer: ModelContainer
+
+    init() {
         let schema = Schema([
-            Item.self,
+            Conversation.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            sharedModelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            
+            let descriptor = FetchDescriptor<Conversation>()
+            let items = try sharedModelContainer.mainContext.fetch(descriptor)
+            for item in items where item.messages.isEmpty {
+                sharedModelContainer.mainContext.delete(item)
+            }
+            try sharedModelContainer.mainContext.save()
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
-    }()
+
+        let context = self.sharedModelContainer.mainContext
+        let newConversation = Conversation()
+        context.insert(newConversation)
+        self.newConversation = newConversation
+    }
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ConversationView(conversation: newConversation)
         }
+        .environmentObject(settings)
         .modelContainer(sharedModelContainer)
     }
 }
+
