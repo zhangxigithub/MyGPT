@@ -13,7 +13,7 @@ import Combine
 @MainActor
 class AppSettings: ObservableObject {
     @Published var models: [String] = []
-    @AppStorage("AppSettings.selectedModel") var selectedModel: String = ""
+    @AppStorage("AppSettings.selectedModel") var selectedModel: String = "gpt-4.1"
     @AppStorage("AppSettings.developer") var developer: String = ""
     @Published var apiKeys: [StoredAPIKey]
     

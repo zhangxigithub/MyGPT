@@ -13,19 +13,20 @@ struct SettingsView: View {
     @EnvironmentObject var settings: AppSettings
     
     var body: some View {
-        List {
+        Form {
             Section("API Keys") {
                 ForEach($settings.apiKeys) { $key in
-                    Toggle(key.name, isOn: $key.isEnabled)
-                        .onChange(of: key.isEnabled) { oldValue, newValue in
-                            if newValue == true {
-                                settings.enableAPIKey(key: key)
+                    HStack {
+                        Toggle(key.name, isOn: $key.isEnabled)
+                            .onChange(of: key.isEnabled) { oldValue, newValue in
+                                if newValue == true {
+                                    settings.enableAPIKey(key: key)
+                                }
                             }
+                        Divider()
+                        Button("Delete") {
+                            settings.deleteAPIKey(key: key)
                         }
-                }
-                .onDelete { indexSet in
-                    if let index = indexSet.first {
-                        settings.deleteAPIKey(key: settings.apiKeys[index])
                     }
                 }
                 
@@ -73,8 +74,8 @@ struct SettingsView: View {
                     Text("4").tag(4)
                 }
             }
-
         }
+        .formStyle(.grouped)
         .navigationTitle("Settings")
     }
 }

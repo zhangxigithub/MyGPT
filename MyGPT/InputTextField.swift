@@ -68,6 +68,10 @@ struct InputTextField: View {
                     .frame(width: 50)
                 } else {
                     Button {
+                        if settings.apiKey.isEmpty {
+                            errorMessage = "API Key is required. Please go to the settings (top right) and add a valid API Key."
+                            return
+                        }
                         Task {
                             if image {
                                 await image()

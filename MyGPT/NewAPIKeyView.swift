@@ -47,7 +47,6 @@ struct NewAPIKeyView: View {
                                 if !models.isEmpty {
                                     settings.addAPIKey(name: name.isEmpty ? "Key" : name, key: apiKey)
                                     settings.models = models
-                                    settings.selectedModel = models.first!
                                     dismiss()
                                 }
                             } catch GPTAPIError.error(let errorMessage) {
@@ -67,8 +66,8 @@ struct NewAPIKeyView: View {
                 }
                 .listRowBackground(Color.clear)
             }
-            
         }
+        .formStyle(.grouped)
     }
     
     
