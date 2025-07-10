@@ -25,6 +25,7 @@ extension PlatformImage {
         Image(nsImage: self)
     }
 
+    @MainActor
     func save() {
         guard let data = self.data else { return }
 
