@@ -17,7 +17,8 @@ struct PromptBuddyApp: App {
 
     init() {
         let schema = Schema([
-            Conversation.self
+            Conversation.self,
+            QuickAction.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

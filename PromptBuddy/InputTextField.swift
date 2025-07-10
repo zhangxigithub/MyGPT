@@ -5,6 +5,7 @@
 //  Created by Sid on 24/6/2025.
 //
 import SwiftUI
+import SwiftData
 
 struct InputTextField: View {
 
@@ -16,6 +17,9 @@ struct InputTextField: View {
     @Binding var selectedImages: [PlatformImage]
     @State var errorMessage: String?
     var conversation: Conversation
+    
+    @Environment(\.modelContext) private var modelContext
+    @Query private var quickActions: [QuickAction]
     
     
     @State var search = false
@@ -35,6 +39,16 @@ struct InputTextField: View {
                         .toggleStyle(.button)
                     Toggle("Image", isOn: $image)
                         .toggleStyle(.button)
+                    
+                    ForEach(quickActions) { action in
+                        Button(action.name) {
+                            let message = action.prompt + "\n" + input
+                            Task {
+                                await chat(message: message)
+                            }
+                        }
+                        .tint(.orange)
+                    }
                 }
                 .padding(4)
                 .glassEffectIfAvailable()
@@ -76,7 +90,7 @@ struct InputTextField: View {
                             if image {
                                 await image()
                             } else {
-                                await chat()
+                                await chat(message: input)
                             }
                         }
                     } label: {
@@ -92,7 +106,7 @@ struct InputTextField: View {
     }
     
     
-    func chat() async {
+    func chat(message: String) async {
         errorMessage = nil
         loading = true
         stopwatch.start()
@@ -102,7 +116,7 @@ struct InputTextField: View {
         }
         let service = GPTService(settings: settings)
         do {
-            try await service.chat(with: conversation, message: input, search: search, inputImages: selectedImages)
+            try await service.chat(with: conversation, message: message, search: search, inputImages: selectedImages)
         } catch GPTAPIError.error(let errorMessage) {
             self.errorMessage = errorMessage
         } catch  {
