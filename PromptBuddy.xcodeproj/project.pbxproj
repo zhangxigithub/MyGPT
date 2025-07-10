@@ -24,25 +24,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8CF01D272E18071600810ABA /* MyGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CF01D362E18071800810ABA /* MyGPTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyGPTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CF01D402E18071800810ABA /* MyGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CF01D272E18071600810ABA /* PromptBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromptBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CF01D362E18071800810ABA /* PromptBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PromptBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CF01D402E18071800810ABA /* PromptBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PromptBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8CF01D292E18071600810ABA /* MyGPT */ = {
+		8CF01D292E18071600810ABA /* PromptBuddy */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MyGPT;
+			path = PromptBuddy;
 			sourceTree = "<group>";
 		};
-		8CF01D392E18071800810ABA /* MyGPTTests */ = {
+		8CF01D392E18071800810ABA /* PromptBuddyTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MyGPTTests;
+			path = PromptBuddyTests;
 			sourceTree = "<group>";
 		};
-		8CF01D432E18071800810ABA /* MyGPTUITests */ = {
+		8CF01D432E18071800810ABA /* PromptBuddyUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MyGPTUITests;
+			path = PromptBuddyUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +75,9 @@
 		8CF01D1E2E18071600810ABA = {
 			isa = PBXGroup;
 			children = (
-				8CF01D292E18071600810ABA /* MyGPT */,
-				8CF01D392E18071800810ABA /* MyGPTTests */,
-				8CF01D432E18071800810ABA /* MyGPTUITests */,
+				8CF01D292E18071600810ABA /* PromptBuddy */,
+				8CF01D392E18071800810ABA /* PromptBuddyTests */,
+				8CF01D432E18071800810ABA /* PromptBuddyUITests */,
 				8CF01D282E18071600810ABA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,9 +85,9 @@
 		8CF01D282E18071600810ABA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8CF01D272E18071600810ABA /* MyGPT.app */,
-				8CF01D362E18071800810ABA /* MyGPTTests.xctest */,
-				8CF01D402E18071800810ABA /* MyGPTUITests.xctest */,
+				8CF01D272E18071600810ABA /* PromptBuddy.app */,
+				8CF01D362E18071800810ABA /* PromptBuddyTests.xctest */,
+				8CF01D402E18071800810ABA /* PromptBuddyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8CF01D262E18071600810ABA /* MyGPT */ = {
+		8CF01D262E18071600810ABA /* PromptBuddy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8CF01D4A2E18071800810ABA /* Build configuration list for PBXNativeTarget "MyGPT" */;
+			buildConfigurationList = 8CF01D4A2E18071800810ABA /* Build configuration list for PBXNativeTarget "PromptBuddy" */;
 			buildPhases = (
 				8CF01D232E18071600810ABA /* Sources */,
 				8CF01D242E18071600810ABA /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				8CF01D292E18071600810ABA /* MyGPT */,
+				8CF01D292E18071600810ABA /* PromptBuddy */,
 			);
-			name = MyGPT;
+			name = PromptBuddy;
 			packageProductDependencies = (
 			);
 			productName = MyGPT;
-			productReference = 8CF01D272E18071600810ABA /* MyGPT.app */;
+			productReference = 8CF01D272E18071600810ABA /* PromptBuddy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8CF01D352E18071800810ABA /* MyGPTTests */ = {
+		8CF01D352E18071800810ABA /* PromptBuddyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8CF01D4D2E18071800810ABA /* Build configuration list for PBXNativeTarget "MyGPTTests" */;
+			buildConfigurationList = 8CF01D4D2E18071800810ABA /* Build configuration list for PBXNativeTarget "PromptBuddyTests" */;
 			buildPhases = (
 				8CF01D322E18071800810ABA /* Sources */,
 				8CF01D332E18071800810ABA /* Frameworks */,
@@ -131,18 +131,18 @@
 				8CF01D382E18071800810ABA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				8CF01D392E18071800810ABA /* MyGPTTests */,
+				8CF01D392E18071800810ABA /* PromptBuddyTests */,
 			);
-			name = MyGPTTests;
+			name = PromptBuddyTests;
 			packageProductDependencies = (
 			);
 			productName = MyGPTTests;
-			productReference = 8CF01D362E18071800810ABA /* MyGPTTests.xctest */;
+			productReference = 8CF01D362E18071800810ABA /* PromptBuddyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8CF01D3F2E18071800810ABA /* MyGPTUITests */ = {
+		8CF01D3F2E18071800810ABA /* PromptBuddyUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8CF01D502E18071800810ABA /* Build configuration list for PBXNativeTarget "MyGPTUITests" */;
+			buildConfigurationList = 8CF01D502E18071800810ABA /* Build configuration list for PBXNativeTarget "PromptBuddyUITests" */;
 			buildPhases = (
 				8CF01D3C2E18071800810ABA /* Sources */,
 				8CF01D3D2E18071800810ABA /* Frameworks */,
@@ -154,13 +154,13 @@
 				8CF01D422E18071800810ABA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				8CF01D432E18071800810ABA /* MyGPTUITests */,
+				8CF01D432E18071800810ABA /* PromptBuddyUITests */,
 			);
-			name = MyGPTUITests;
+			name = PromptBuddyUITests;
 			packageProductDependencies = (
 			);
 			productName = MyGPTUITests;
-			productReference = 8CF01D402E18071800810ABA /* MyGPTUITests.xctest */;
+			productReference = 8CF01D402E18071800810ABA /* PromptBuddyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8CF01D222E18071600810ABA /* Build configuration list for PBXProject "MyGPT" */;
+			buildConfigurationList = 8CF01D222E18071600810ABA /* Build configuration list for PBXProject "PromptBuddy" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8CF01D262E18071600810ABA /* MyGPT */,
-				8CF01D352E18071800810ABA /* MyGPTTests */,
-				8CF01D3F2E18071800810ABA /* MyGPTUITests */,
+				8CF01D262E18071600810ABA /* PromptBuddy */,
+				8CF01D352E18071800810ABA /* PromptBuddyTests */,
+				8CF01D3F2E18071800810ABA /* PromptBuddyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		8CF01D382E18071800810ABA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8CF01D262E18071600810ABA /* MyGPT */;
+			target = 8CF01D262E18071600810ABA /* PromptBuddy */;
 			targetProxy = 8CF01D372E18071800810ABA /* PBXContainerItemProxy */;
 		};
 		8CF01D422E18071800810ABA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8CF01D262E18071600810ABA /* MyGPT */;
+			target = 8CF01D262E18071600810ABA /* PromptBuddy */;
 			targetProxy = 8CF01D412E18071800810ABA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -411,7 +411,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_CFBundleDisplayName = MyGPT;
+				INFOPLIST_KEY_CFBundleDisplayName = PromptBuddy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save image to Photos";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -470,7 +470,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_CFBundleDisplayName = MyGPT;
+				INFOPLIST_KEY_CFBundleDisplayName = PromptBuddy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save image to Photos";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -523,7 +523,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyGPT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyGPT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PromptBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PromptBuddy";
 				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
@@ -548,7 +548,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyGPT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyGPT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PromptBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PromptBuddy";
 				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
@@ -606,7 +606,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8CF01D222E18071600810ABA /* Build configuration list for PBXProject "MyGPT" */ = {
+		8CF01D222E18071600810ABA /* Build configuration list for PBXProject "PromptBuddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8CF01D482E18071800810ABA /* Debug */,
@@ -615,7 +615,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8CF01D4A2E18071800810ABA /* Build configuration list for PBXNativeTarget "MyGPT" */ = {
+		8CF01D4A2E18071800810ABA /* Build configuration list for PBXNativeTarget "PromptBuddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8CF01D4B2E18071800810ABA /* Debug */,
@@ -624,7 +624,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8CF01D4D2E18071800810ABA /* Build configuration list for PBXNativeTarget "MyGPTTests" */ = {
+		8CF01D4D2E18071800810ABA /* Build configuration list for PBXNativeTarget "PromptBuddyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8CF01D4E2E18071800810ABA /* Debug */,
@@ -633,7 +633,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8CF01D502E18071800810ABA /* Build configuration list for PBXNativeTarget "MyGPTUITests" */ = {
+		8CF01D502E18071800810ABA /* Build configuration list for PBXNativeTarget "PromptBuddyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8CF01D512E18071800810ABA /* Debug */,

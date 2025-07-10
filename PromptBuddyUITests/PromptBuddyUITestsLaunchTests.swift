@@ -1,13 +1,13 @@
 //
-//  MyGPTUITestsLaunchTests.swift
-//  MyGPTUITests
+//  PromptBuddyUITestsLaunchTests.swift
+//  PromptBuddyUITests
 //
 //  Created by Me on 4/7/2025.
 //
 
 import XCTest
 
-final class MyGPTUITestsLaunchTests: XCTestCase {
+final class PromptBuddyUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -1,13 +1,13 @@
 //
-//  MyGPTUITests.swift
-//  MyGPTUITests
+//  PromptBuddyUITests.swift
+//  PromptBuddyUITests
 //
 //  Created by Me on 4/7/2025.
 //
 
 import XCTest
 
-final class MyGPTUITests: XCTestCase {
+final class PromptBuddyUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

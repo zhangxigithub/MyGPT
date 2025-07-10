@@ -1,6 +1,6 @@
 //
 //  AppSettings.swift
-//  MyGPT
+//  PromptBuddy
 //
 //  Created by Me on 5/7/2025.
 //

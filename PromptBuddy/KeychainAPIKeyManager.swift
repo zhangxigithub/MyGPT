@@ -1,6 +1,6 @@
 //
 //  KeychainAPIKeyManager.swift
-//  MyGPT
+//  PromptBuddy
 //
 //  Created by Me on 6/7/2025.
 //
@@ -22,7 +22,7 @@ struct StoredAPIKey: Identifiable, Codable, Hashable {
 
 class KeychainAPIKeyManager {
 
-    private let service = "sidzhang.MyGPT"
+    private let service = "sidzhang.PromptBuddy"
     private let classType = kSecClassGenericPassword
 
 

@@ -1,6 +1,6 @@
 //
 //  NewAPIKeyView.swift
-//  MyGPT
+//  PromptBuddy
 //
 //  Created by Me on 6/7/2025.
 //

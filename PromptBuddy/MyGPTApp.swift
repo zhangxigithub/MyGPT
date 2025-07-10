@@ -1,6 +1,6 @@
 //
-//  MyGPTApp.swift
-//  MyGPT
+//  PromptBuddyApp.swift
+//  PromptBuddy
 //
 //  Created by Me on 4/7/2025.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct MyGPTApp: App {
+struct PromptBuddyApp: App {
     
     let settings = AppSettings()
     let newConversation: Conversation
