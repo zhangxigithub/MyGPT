@@ -1,5 +1,9 @@
 # PromptBuddy
 
+## 📱 Download on the App Store
+
+[![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/promptbuddy/id6748307335)
+
 **PromptBuddy** is a lightweight, open-source ChatGPT client designed for speed, privacy, and flexibility. Use your own OpenAI API key to chat with GPT models and generate or modify images — all without login or hidden charges.
 
 Originally built as a personal development tool, **PromptBuddy** is now available to everyone on **iOS**, **macOS**, and **visionOS**. Whether you’re writing, brainstorming, coding, or just exploring AI, PromptBuddy gives you a clean, efficient interface with full control.
