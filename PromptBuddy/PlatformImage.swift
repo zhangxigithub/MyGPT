@@ -26,21 +26,22 @@ extension PlatformImage {
     }
 
     func save() {
-        let fileManager = FileManager.default
-        guard let url = fileManager.urls(for: .downloadsDirectory, in: .userDomainMask).first else {
-            print("Unable to access Documents directory")
-            return
-        }
-        let filename = "GeneratedImage_\(arc4random()).png"
-        let fileURL = url.appendingPathComponent(filename)
-
         guard let data = self.data else { return }
 
-        do {
-            try data.write(to: fileURL)
-            print("Image saved to: \(fileURL)")
-        } catch {
-            print("Error saving image: \(error)")
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = "Image.png"
+
+        panel.begin { response in
+            Task { @MainActor in
+                if response == .OK, let url = panel.url {
+                    do {
+                        try data.write(to: url)
+                        print("Image saved to \(url)")
+                    } catch {
+                        print("Failed to save image: \(error)")
+                    }
+                }
+            }
         }
     }
 }
