@@ -7,9 +7,9 @@
 
 import SwiftUI
 import SwiftData
+import ChatGPT
 
-
-struct ConversationHistoryView: View {
+struct ConversationList: View {
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext

@@ -1,0 +1,15 @@
+{
+  "originHash" : "7e958ce1711ba8e560afc2488cf9f4402be9b7f563c907a4a33de386c9988547",
+  "pins" : [
+    {
+      "identity" : "chatgpt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zhangxigithub/ChatGPT.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f39698072645387ac956b87a3af8cd56de5db1d9"
+      }
+    }
+  ],
+  "version" : 3
+}

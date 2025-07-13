@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import PhotosUI
+import ChatGPT
 
 struct ImagePicker: View {
     

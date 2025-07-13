@@ -7,6 +7,7 @@
 import SwiftUI
 import SwiftData
 import PhotosUI
+import ChatGPT
 
 struct ConversationView: View {
     @EnvironmentObject var settings: AppSettings
@@ -38,7 +39,7 @@ struct ConversationView: View {
                     }
                     
                     NavigationLink {
-                        ConversationHistoryView {
+                        ConversationList {
                             conversation = $0
                         }
                     } label: {

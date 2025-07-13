@@ -9,6 +9,8 @@
 import Foundation
 import SwiftUI
 import Combine
+import ChatGPT
+
 
 @MainActor
 class AppSettings: ObservableObject {
@@ -34,11 +36,22 @@ class AppSettings: ObservableObject {
             let safeApiKey = apiKey
             Task {
                 let fetchedModels = try await GPTAPI.models(apiKey: safeApiKey)
-                await MainActor.run {
-                    self.models = fetchedModels
-                }
+                self.models = fetchedModels
             }
         }
+    }
+}
+
+extension GPTAPI {
+    convenience init(settings: AppSettings) {
+        self.init(
+            apiKey: settings.apiKey,
+            model: settings.selectedModel,
+            size: settings.size,
+            quality: settings.quality,
+            background: settings.background,
+            number: settings.number
+        )
     }
 }
 

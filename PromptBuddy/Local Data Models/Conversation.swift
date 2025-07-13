@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftData
+import ChatGPT
+
 import Combine
 #if os(macOS)
 import AppKit

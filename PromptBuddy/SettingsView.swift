@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import ChatGPT
 
 struct SettingsView: View {
 
@@ -19,17 +20,16 @@ struct SettingsView: View {
         Form {
             Section("API Keys") {
                 ForEach($settings.apiKeys) { $key in
-                    HStack {
-                        Toggle(key.name, isOn: $key.isEnabled)
-                            .onChange(of: key.isEnabled) { oldValue, newValue in
-                                if newValue == true {
-                                    settings.enableAPIKey(key: key)
-                                }
+                    Toggle(key.name, isOn: $key.isEnabled)
+                        .onChange(of: key.isEnabled) { oldValue, newValue in
+                            if newValue == true {
+                                settings.enableAPIKey(key: key)
                             }
-                        Divider()
-                        Button("Delete") {
-                            settings.deleteAPIKey(key: key)
                         }
+                }.onDelete { indexSet in
+                    if let index = indexSet.first {
+                        let key = settings.apiKeys[index]
+                        settings.deleteAPIKey(key: key)
                     }
                 }
                 
@@ -80,31 +80,36 @@ struct SettingsView: View {
             
             Section {
                 ForEach(quickActions) { action in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(action.name)
-                                .bold()
-                            Text(action.prompt)
-                                .foregroundStyle(.secondary)
-                        }
-                        Spacer()
-                        Divider()
-                        Button("Delete") {
-                            modelContext.delete(action)
-                            try? modelContext.save()
-                        }
+                    VStack(alignment: .leading) {
+                        Text(action.name)
+                            .bold()
+                        Text(action.prompt)
+                            .foregroundStyle(.secondary)
                     }
                 }
+                .onDelete { indexSet in
+                    if let index = indexSet.first {
+                        let action = quickActions[index]
+                        modelContext.delete(action)
+                        try? modelContext.save()
+                    }
+                }
+                
                 Button("Add") {
                     showingAddQuickAction = true
+                }
+                .sheet(isPresented: $showingAddQuickAction) {
+                    NewQuickActionView { name, prompt in
+                        let action = QuickAction(name: name, prompt: prompt)
+                        modelContext.insert(action)
+                        try? modelContext.save()
+                        showingAddQuickAction = false
+                    }
                 }
             } header: {
                 Text("Quick Action")
             } footer: {
                 Text("When you tap a Quick Action, the prompt will be combined with the input text. For example, if the Quick Action is \"Translate to English\" it will send \"Translate to English\" + your input text.")
-            }
-            .sheet(isPresented: $showingAddQuickAction) {
-                AddQuickActionView(showingAddQuickAction: $showingAddQuickAction)
             }
         }
         .formStyle(.grouped)
@@ -113,37 +118,3 @@ struct SettingsView: View {
 }
 
 
-struct AddQuickActionView: View {
-    @Environment(\.modelContext) private var modelContext
-    @State private var newQuickActionName = ""
-    @State private var newQuickActionPrompt = ""
-    @Binding var showingAddQuickAction: Bool
-    
-    var body: some View {
-        VStack(spacing: 20) {
-            Text("New Quick Action")
-                .font(.headline)
-            TextField("Name", text: $newQuickActionName)
-                .textFieldStyle(.roundedBorder)
-            TextField("Prompt", text: $newQuickActionPrompt)
-                .textFieldStyle(.roundedBorder)
-            HStack {
-                Button("Cancel") {
-                    showingAddQuickAction = false
-                }
-                Spacer()
-                Button("Confirm") {
-                    let action = QuickAction(name: newQuickActionName, prompt: newQuickActionPrompt)
-                    modelContext.insert(action)
-                    newQuickActionName = ""
-                    newQuickActionPrompt = ""
-                    showingAddQuickAction = false
-                    try? modelContext.save()
-                }
-                .disabled(newQuickActionName.isEmpty || newQuickActionPrompt.isEmpty)
-            }
-        }
-        .padding()
-        .presentationDetents([.medium, .large])
-    }
-}

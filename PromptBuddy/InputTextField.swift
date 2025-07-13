@@ -1,14 +1,16 @@
 //
-//  File.swift
+//  InputTextField.swift
 //  SidGPT
 //
 //  Created by Sid on 24/6/2025.
 //
 import SwiftUI
 import SwiftData
+import ChatGPT
 
 struct InputTextField: View {
 
+    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var settings: AppSettings
     
     @State var input = ""
@@ -18,7 +20,7 @@ struct InputTextField: View {
     @State var errorMessage: String?
     var conversation: Conversation
     
-    @Environment(\.modelContext) private var modelContext
+    
     @Query private var quickActions: [QuickAction]
     
     
@@ -40,14 +42,32 @@ struct InputTextField: View {
                     Toggle("Image", isOn: $image)
                         .toggleStyle(.button)
                     
-                    ForEach(quickActions) { action in
-                        Button(action.name) {
-                            let message = action.prompt + "\n" + input
-                            Task {
-                                await chat(message: message)
+                    if quickActions.count <= 2 {
+                        ForEach(quickActions) { action in
+                            Button(action.name) {
+                                let message = action.prompt + "\n" + input
+                                Task {
+                                    await chat(message: message)
+                                }
                             }
+                            .tint(.orange)
                         }
-                        .tint(.orange)
+                    } else {
+                        Menu {
+                            ForEach(quickActions) { action in
+                                Button(action.name) {
+                                    let message = action.prompt + "\n" + input
+                                    Task {
+                                        await chat(message: message)
+                                    }
+                                }
+                            }
+                        } label: {
+                            Label("Quick Actions", systemImage: "bolt.fill")
+                                .labelStyle(.titleAndIcon)
+                                .tint(.orange)
+                                .padding(.horizontal)
+                        }
                     }
                 }
                 .padding(4)
@@ -114,16 +134,28 @@ struct InputTextField: View {
             stopwatch.stop()
             loading = false
         }
-        let service = GPTService(settings: settings)
+        
         do {
-            try await service.chat(with: conversation, message: message, search: search, inputImages: selectedImages)
+            let id = conversation.messages.last?.responseId
+            let api = GPTAPI(settings: settings)
+
+            let response = try await api.chat(previousResponseId: id,
+                                              developer: settings.developer,
+                                              message: message,
+                                              search: search,
+                                              inputImages: selectedImages)
+            
+            let responseMessage = Message(user: message, gpt: response.message, inputImageData: selectedImages.compactMap { $0.data }, outputImageData: [])
+            conversation.messages.append(responseMessage)
+            
+            selectedImages.removeAll()
+            input = ""
         } catch GPTAPIError.error(let errorMessage) {
             self.errorMessage = errorMessage
         } catch  {
             self.errorMessage = error.localizedDescription
         }
-        selectedImages.removeAll()
-        input = ""
+
     }
     
     func image() async {
@@ -134,16 +166,18 @@ struct InputTextField: View {
             stopwatch.stop()
             loading = false
         }
-        let service = GPTService(settings: settings)
         do {
-            try await service.generateImage(with: conversation, message: input, inputImages: selectedImages)
+            let api = GPTAPI(settings: settings)
+            let response = try await api.generateImage(message: input, inputImages: selectedImages)
+            let responseMessage = Message(user: input, gpt: "Images", inputImageData: selectedImages.compactMap { $0.data }, outputImageData: response.images.compactMap { $0.data })
+            conversation.messages.append(responseMessage)
+            selectedImages.removeAll()
+            input = ""
         } catch GPTAPIError.error(let errorMessage) {
             self.errorMessage = errorMessage
         } catch  {
             self.errorMessage = error.localizedDescription
         }
-        selectedImages.removeAll()
-        input = ""
     }
 }
 

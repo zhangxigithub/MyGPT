@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8CA9DC3E2E238655009DFAA3 /* ChatGPT in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA9DC3D2E238655009DFAA3 /* ChatGPT */; };
+		8CD3F6A62E2A99C40042B6EB /* ChatGPT in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD3F6A52E2A99C40042B6EB /* ChatGPT */; };
+		8CDE902C2E272BA2002571C2 /* ChatGPT in Frameworks */ = {isa = PBXBuildFile; productRef = 8CDE902B2E272BA2002571C2 /* ChatGPT */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8CF01D372E18071800810ABA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD3F6A62E2A99C40042B6EB /* ChatGPT in Frameworks */,
+				8CDE902C2E272BA2002571C2 /* ChatGPT in Frameworks */,
+				8CA9DC3E2E238655009DFAA3 /* ChatGPT in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +134,9 @@
 			);
 			name = PromptBuddy;
 			packageProductDependencies = (
+				8CA9DC3D2E238655009DFAA3 /* ChatGPT */,
+				8CDE902B2E272BA2002571C2 /* ChatGPT */,
+				8CD3F6A52E2A99C40042B6EB /* ChatGPT */,
 			);
 			productName = MyGPT;
 			productReference = 8CF01D272E18071600810ABA /* PromptBuddy.app */;
@@ -208,6 +220,9 @@
 			);
 			mainGroup = 8CF01D1E2E18071600810ABA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8CD3F6A42E2A99C40042B6EB /* XCRemoteSwiftPackageReference "ChatGPT" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8CF01D282E18071600810ABA /* Products */;
 			projectDirPath = "";
@@ -656,6 +671,33 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8CD3F6A42E2A99C40042B6EB /* XCRemoteSwiftPackageReference "ChatGPT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/zhangxigithub/ChatGPT.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8CA9DC3D2E238655009DFAA3 /* ChatGPT */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ChatGPT;
+		};
+		8CD3F6A52E2A99C40042B6EB /* ChatGPT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CD3F6A42E2A99C40042B6EB /* XCRemoteSwiftPackageReference "ChatGPT" */;
+			productName = ChatGPT;
+		};
+		8CDE902B2E272BA2002571C2 /* ChatGPT */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ChatGPT;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8CF01D1F2E18071600810ABA /* Project object */;
 }

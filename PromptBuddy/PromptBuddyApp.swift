@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import ChatGPT
 
 @main
 struct PromptBuddyApp: App {
